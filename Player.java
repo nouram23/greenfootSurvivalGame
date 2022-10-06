@@ -14,6 +14,8 @@ public class Player extends Actor
      */
     int speed = 3;
      int time = 0;
+     int animateImage = 0;
+      int shootAnimateImage = 0;
      WeaponUpgrade weaponupgrade;
     public Player(){
      GreenfootImage image = getImage();
@@ -34,6 +36,25 @@ public class Player extends Actor
        moveAround();
        fire();
        hitByZombie();
+       animate();
+        
+    }
+     public void animate(){
+             if(animateImage >19)
+                animateImage=0;
+            setImage("survivor-move_shotgun_"+animateImage + ".png");
+            animateImage++;
+            getImage().scale(50,50);
+           
+        
+    }
+     public void shootAnimate(){
+             if(shootAnimateImage >2)
+                shootAnimateImage=0;
+            setImage("survivor-shoot_shotgun_"+shootAnimateImage + ".png");
+            shootAnimateImage++;
+            getImage().scale(50,50);
+           
         
     }
     public void turnAround(){
@@ -51,6 +72,7 @@ public class Player extends Actor
             setLocation(getX()+speed, getY());
     }
     public void fire(){
+        shootAnimate();
         if(Greenfoot.mousePressed(null) && weaponupgrade.status ==1){
             Projectile projectile = new Projectile();
             getWorld().addObject(projectile, getX(), getY());

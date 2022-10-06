@@ -18,8 +18,17 @@ public class Zombie extends Actor
     int health = 3;
     Player player;
     Counter counter;
+     Projectiles projectiles;
+
     public Zombie (Player mainPlayer, Counter counter){
         this.counter= counter;
+        player = mainPlayer;
+        setImage("skeleton-idle_0.png");
+        getImage().scale(60,60);
+    }
+     public Zombie (Player mainPlayer, Counter counter,Projectiles projectiles ){
+        this.counter= counter;
+        this.projectiles = projectiles;
         player = mainPlayer;
         setImage("skeleton-idle_0.png");
         getImage().scale(60,60);
@@ -59,6 +68,10 @@ public class Zombie extends Actor
             counter.score++;
             counter.money+=5;
             getWorld().removeObject(this);
+           
+
+            getWorld().addObject( new Projectiles(), 10, 10);
+         
         }
 
     }

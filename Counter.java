@@ -24,6 +24,6 @@ public class Counter extends Actor
         // Add your action code here.
         time++;
          setImage(new GreenfootImage("Score: " + score+ "\n Cash: " + money +"\nTime: "+ time/60, 30, Color.BLACK, new Color(0,0,0,0)));
-    
+      
     }
 }
