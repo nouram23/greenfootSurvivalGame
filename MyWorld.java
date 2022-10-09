@@ -20,7 +20,6 @@ public class MyWorld extends World
     public Counter counter = new Counter();
     public HealthBar healthbar = new HealthBar();
     public WeaponUpgrade weaponupgrade = new WeaponUpgrade(counter);
-    public Projectiles projectiles = new Projectiles();
 
     public MyWorld()
     {    
@@ -61,16 +60,16 @@ public class MyWorld extends World
          if(count % spawnSpeed == 0){
             randomSpawn = Greenfoot.getRandomNumber(10);
             switch(randomSpawn){
-                case 0 : addObject(new Zombie(mainPlayer ,counter, projectiles), 0,0); break;
-                case 1 : addObject(new Zombie(mainPlayer , counter, projectiles), getWidth()/2 ,0); break;
-                case 2 : addObject(new Zombie(mainPlayer, counter, projectiles), getWidth() ,0); break;
-                case 3 : addObject(new Zombie(mainPlayer, counter, projectiles), 0 ,getHeight()/2); break;
-                case 4 : addObject(new Zombie(mainPlayer, counter, projectiles), 0,getHeight()); break;
-                case 5 : addObject(new Zombie(mainPlayer, counter,projectiles), getWidth()/2 ,getHeight()); break;
-                case 6 : addObject(new Zombie(mainPlayer,counter, projectiles), getWidth() ,getHeight()/2); break;
-                case 7 : addObject(new Zombie(mainPlayer,counter,projectiles), getWidth() , getHeight()); break;
-                case 8 : addObject(new Zombie(mainPlayer,counter, projectiles), getWidth() , getHeight()/3); break;                    
-                case 9 : addObject(new Zombie(mainPlayer,counter,projectiles), getWidth()/3 , getHeight()); break;
+                case 0 : addObject(new Zombie(mainPlayer ,counter), 0,0); break;
+                case 1 : addObject(new Zombie(mainPlayer , counter), getWidth()/2 ,0); break;
+                case 2 : addObject(new Zombie(mainPlayer, counter), getWidth() ,0); break;
+                case 3 : addObject(new Zombie(mainPlayer, counter), 0 ,getHeight()/2); break;
+                case 4 : addObject(new Zombie(mainPlayer, counter), 0,getHeight()); break;
+                case 5 : addObject(new Zombie(mainPlayer, counter), getWidth()/2 ,getHeight()); break;
+                case 6 : addObject(new Zombie(mainPlayer,counter), getWidth() ,getHeight()/2); break;
+                case 7 : addObject(new Zombie(mainPlayer,counter), getWidth() , getHeight()); break;
+                case 8 : addObject(new Zombie(mainPlayer,counter), getWidth() , getHeight()/3); break;                    
+                case 9 : addObject(new Zombie(mainPlayer,counter), getWidth()/3 , getHeight()); break;
                                                   
             }
            

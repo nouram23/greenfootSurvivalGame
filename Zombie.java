@@ -13,12 +13,14 @@ public class Zombie extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     int animateImage = 0;
+    int attackImage = 0;
+
     int animateSpeed = 5;
+     int attackSpeed = 3;
     int count;
     int health = 3;
     Player player;
     Counter counter;
-     Projectiles projectiles;
 
     public Zombie (Player mainPlayer, Counter counter){
         this.counter= counter;
@@ -26,13 +28,7 @@ public class Zombie extends Actor
         setImage("skeleton-idle_0.png");
         getImage().scale(60,60);
     }
-     public Zombie (Player mainPlayer, Counter counter,Projectiles projectiles ){
-        this.counter= counter;
-        this.projectiles = projectiles;
-        player = mainPlayer;
-        setImage("skeleton-idle_0.png");
-        getImage().scale(60,60);
-    }
+  
     public void act()
     {
         // Add your action code here.
@@ -40,40 +36,60 @@ public class Zombie extends Actor
         animate();
         moveAround();
         hitByProjectile();
+       
     }
     
     public void animate(){
         if(count % animateSpeed == 0){
-             if(animateImage >16)
-                animateImage=0;
-            setImage("skeleton-move_"+animateImage + ".png");
+            if(animateImage >16)
+                    animateImage=0;
+           if(health == 2){
+            setImage("ylSkeleton_move_"+animateImage + ".png");
+              
+            } else if(health ==1)
+                setImage("redSkeleton_move_"+animateImage + ".png");
+            else setImage("skeleton-move_"+animateImage + ".png");
             animateImage++;
             getImage().scale(60,60);
            
         }
     }
       public void moveAround(){
- 
         move(1);
         turnTowards(player.getX(), player.getY());
     }
     public void hitByProjectile(){
     Actor projectile = getOneIntersectingObject(Projectile.class);
+        int x, y;
         if(projectile != null){
             health--;
-            
             getWorld().removeObject(projectile);
         }
+        
         if(health == 0){
             counter.score++;
             counter.money+=5;
+            x = this.getX();
+            y = this.getY();
             getWorld().removeObject(this);
            
-
-            getWorld().addObject( new Projectiles(), 10, 10);
-         
+                    
         }
 
     }
+    public void attackAnimation(){
+         World world = getWorld();
+        MyWorld myWorld = (MyWorld)world;
+        if(myWorld.getPlayer().hitByZombie()){
+            if(count % attackSpeed == 0){
+                if(attackImage >8)
+                    attackImage=0;
+                setImage("skeleton-attack_"+attackImage + ".png");
+                attackImage++;
+                getImage().scale(60,60);
+        }
+    }
+    }
+    
 
 }
