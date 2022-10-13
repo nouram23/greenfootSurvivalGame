@@ -29,7 +29,8 @@ public class HealthBar extends Actor
           World world = getWorld();
         MyWorld myWorld = (MyWorld)world;
         setLocation(myWorld.getPlayer().getX(),myWorld.getPlayer().getY() - 40);
-        loseHealth();       
+        loseHealth();   
+        heal();
     }
     public void loseHealth(){
         World world = getWorld();
@@ -42,4 +43,15 @@ public class HealthBar extends Actor
             Greenfoot.stop();
         }
     }
+      public void heal(){
+        Actor heal = getOneObjectAtOffset(0, 0, Heal.class);
+         if(heal !=null){
+           if(health < 50){
+             health+=10;
+            }
+          getWorld().removeObject(heal);
+        }
+    }
+ 
+     
 }

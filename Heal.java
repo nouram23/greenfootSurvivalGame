@@ -1,26 +1,24 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Projectiles here.
+ * Write a description of class Health here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Projectiles extends Actor
+public class Heal extends Actor
 {
     /**
-     * Act - do whatever the Projectiles wants to do. This method is called whenever
+     * Act - do whatever the Health wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-
-    public Projectiles(){
-     GreenfootImage image = getImage();
+    public Heal(){
+       GreenfootImage image = getImage();
         image.scale(40, 30);
         setImage(image);}
+    
     public void act()
     {
         // Add your action code here.
-        
     }
-    
 }

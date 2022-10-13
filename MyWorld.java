@@ -20,14 +20,16 @@ public class MyWorld extends World
     public Counter counter = new Counter();
     public HealthBar healthbar = new HealthBar();
     public WeaponUpgrade weaponupgrade = new WeaponUpgrade(counter);
+    public Projectiles projectiles = new Projectiles();
+
 
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(900, 700, 1); 
-        mainPlayer = new Player(weaponupgrade);
+        mainPlayer = new Player(weaponupgrade, counter);
         addObject(mainPlayer, getWidth()/2, getHeight()/2);
-        addObject(counter, 110, 50);
+        addObject(counter, 110, 70);
         addObject(healthbar, mainPlayer.getX(), mainPlayer.getY()-40);
         addObject(weaponupgrade, 700, 60);
     }

@@ -17,13 +17,15 @@ public class Player extends Actor
      int animateImage = 0;
       int shootAnimateImage = 0;
      WeaponUpgrade weaponupgrade;
+     Counter counter;
     public Player(){
      GreenfootImage image = getImage();
         image.scale(50, 50);
         setImage(image);
     }
-    public Player(WeaponUpgrade weaponupgrade){
+    public Player(WeaponUpgrade weaponupgrade, Counter counter){
     this.weaponupgrade= weaponupgrade;
+    this.counter= counter;
      GreenfootImage image = getImage();
         image.scale(50, 50);
         setImage(image);
@@ -37,6 +39,8 @@ public class Player extends Actor
        fire();
        hitByZombie();
        animate();
+       getAmmo();
+      
         
     }
      public void animate(){
@@ -73,13 +77,16 @@ public class Player extends Actor
     }
     public void fire(){
         shootAnimate();
-        if(Greenfoot.mousePressed(null) && weaponupgrade.status ==1){
+      if(counter.ammo > 0){
+          if(Greenfoot.mousePressed(null) && weaponupgrade.status ==1){
+            counter.ammo--;
             Projectile projectile = new Projectile();
             getWorld().addObject(projectile, getX(), getY());
             projectile.setRotation(getRotation());
             projectile.move(30);
         }
         if(Greenfoot.mousePressed(null) && weaponupgrade.status ==2){
+            counter.ammo -= 2;
             Projectile projectile = new Projectile();
             getWorld().addObject(projectile, getX(), getY());
             projectile.setRotation(getRotation() - 5);
@@ -90,6 +97,7 @@ public class Player extends Actor
             projectile2.move(25);
         }
         if(Greenfoot.mousePressed(null) && weaponupgrade.status >=3){
+             counter.ammo -=3;
             Projectile projectile = new Projectile();
             getWorld().addObject(projectile, getX(), getY());
             projectile.setRotation(getRotation() - 5);
@@ -103,6 +111,7 @@ public class Player extends Actor
             projectile3.setRotation(getRotation());
             projectile3.move(25); 
         }
+        }
         
     }
     public boolean hitByZombie(){
@@ -112,5 +121,13 @@ public class Player extends Actor
         }
         else return false;
     }
+      public void getAmmo(){
+        Actor projectiles = getOneObjectAtOffset(0, 0, Projectiles.class);
+         if(projectiles !=null){
+          counter.ammo += 30;
+          getWorld().removeObject(projectiles);
+        }
+    }
+   
  
 }

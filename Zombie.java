@@ -14,13 +14,16 @@ public class Zombie extends Actor
      */
     int animateImage = 0;
     int attackImage = 0;
-
+    int random;
     int animateSpeed = 5;
      int attackSpeed = 3;
     int count;
     int health = 3;
     Player player;
     Counter counter;
+   Projectiles projectiles;
+   
+   Heal heal;
 
     public Zombie (Player mainPlayer, Counter counter){
         this.counter= counter;
@@ -28,7 +31,8 @@ public class Zombie extends Actor
         setImage("skeleton-idle_0.png");
         getImage().scale(60,60);
     }
-  
+    
+    
     public void act()
     {
         // Add your action code here.
@@ -71,7 +75,27 @@ public class Zombie extends Actor
             counter.money+=5;
             x = this.getX();
             y = this.getY();
+            projectiles = new Projectiles();
+            heal = new Heal();
+
+            random = Greenfoot.getRandomNumber(10);
+           
+             switch(random){
+                case 0:
+                    case 2:
+                        case 4:
+                            case 6:
+                                case 8 : getWorld().addObject(projectiles, x,y); break;
+                case 1 :
+                    case 5: 
+                        case 7: 
+                            case 9:getWorld().addObject(heal, x ,y); break;
+               
+                                                  
+            }
+           
             getWorld().removeObject(this);
+            
            
                     
         }
